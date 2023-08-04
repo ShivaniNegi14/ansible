@@ -1,0 +1,17 @@
+-
+ name: This will install based on OS
+ hosts: servers
+ become: yes
+ tasks:
+   - name: install docker
+     apt:
+       name: docker.io
+       state: latest
+     when: ansible_distribution == 'ubuntu' or ansible_distribution == 'debian'
+
+   - name: install aws cli
+     apt: 
+       name: awscli
+       state: latest
+     when: ansible_distribution == 'centOS' or ansible_distribution == 'RedHat Enterprise Linux'
+
